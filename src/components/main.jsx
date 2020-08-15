@@ -84,10 +84,6 @@ const options = [
     { key: 'BSE', text: 'BSE', value: 'BSE' },
 ]
 
-const options2 = [
-    {}
-]
-
 const Main = () => {
     const [activeItem, setActiveItem] = useState('overview')
     return (

@@ -1,10 +1,15 @@
 import React from 'react';
+import { BrowserRouter} from 'react-router-dom';
+import ROUTES, { RenderRoutes } from "./config/routes";
+
 
 function App() {
   return (
-    <div className="App">
-      hello world
-    </div>
+    <>
+    <BrowserRouter>
+    <RenderRoutes routes={ROUTES} />
+    </BrowserRouter>
+    </>
   );
 }
 
