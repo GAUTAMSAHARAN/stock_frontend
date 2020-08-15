@@ -1,0 +1,149 @@
+.middle{
+    width: 100%;
+    height: fit-content;
+    margin-top: 50px !important;
+    .stock-data-card{
+        border-bottom: 2px solid darkblue !important;
+        width: 100% !important;
+        height: fit-content !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 300 !important;
+        .header-1{
+            span{
+                font-size: 30px;
+                font-weight: 700;
+            }
+        }
+        .desc-1{
+            display: flex !important;
+            flex-direction: row !important;
+            .left{
+                width: 50%;
+                height: 100%;
+                float: left;
+                padding-left: 20px;
+                .value{
+                    font-size: 30px;
+                    font-weight: 700;
+                }
+                .analysis{
+                    font-size: 20px;
+                    font-weight: 700;
+                    color: red;
+                }
+                .date{
+                    font-size: 10px;
+                    font-weight: 700;
+                }
+            }
+            .right{
+                width: 50%;
+                height: 100%;
+                float: left;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                .day{
+                    width: 100%;
+                    height: 50%;
+                    margin-bottom: 20px;
+                    span{
+                        font-size: 10px;
+                        font-weight: 700;
+                    }
+                    .values{
+                        width: 80%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        span{
+                            font-size: 15px;
+                        }
+                    }
+                    .bar{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        .text{
+                            width: 5%;
+                            font-size: 15px;
+                            font-weight: 700;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .line{
+                            width: 70%;
+                            height: 2px;
+                            background-color: lightgray;
+                        }
+                    }
+                }
+                .year{
+                    width: 100%;
+                    height: 50%;
+                    margin-bottom: 20px;
+                    span{
+                        font-size: 10px;
+                        font-weight: 700;
+                    }
+                    .values{
+                        width: 80%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        span{
+                            font-size: 15px;
+                        }
+                    }
+                    .bar{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        .text{
+                            width: 5%;
+                            font-size: 15px;
+                            font-weight: 700;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .line{
+                            width: 70%;
+                            height: 2px;
+                            background-color: lightgray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.desc-2{
+    .box{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        .left{
+            width: 50%;
+            height: 100%;
+            padding: 20px;
+        }
+        .right{
+            width: 50%;
+            height: 100%;
+            padding: 20px;
+        }
+    }
+}
+
+.overview-list{
+    .list-item{
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important; 
+        align-items: center !important;
+    }
+}

@@ -1,0 +1,80 @@
+.bottom-card{
+    width: 100%;
+    height: fit-content;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    .company-data-card{
+        background-color: #1765a5 !important;
+        border-bottom: 5px solid #f19f02 !important;
+        width: 100% !important;
+        height: fit-content !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 300 !important;
+        .header-1{
+            span{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                font-size: 30px;
+                font-weight: 700;
+                color: white;
+                text-decoration: underline;
+                line-height: 3px;
+                text-decoration-color: #f19f02;
+                text-decoration-thickness: 5px;
+            }
+        }
+        .desc-1{
+           width: 100% !important;
+           height: fit-content !important;
+           .tab-options{
+               background-color: #2a5c8e !important;
+               border: none !important;
+               border-top: 1px solid white !important;
+           }
+           .options{
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               div{
+                   background-color: #6a8db0;
+                   color: white;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;
+                   width: 30px;
+                   font-family: 'Montserrat', sans-serif !important;
+                   font-weight: 700;
+                   height: 30px;
+                   border: 1px solid black;
+                   margin-right: 20px;
+                   font-size: 10px;
+               }
+           }
+           .info-box{
+               width: 100%;
+               height: 50px;
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               justify-content: space-evenly;
+               div{
+                font-family: 'Montserrat', sans-serif !important;
+                font-weight: 700;
+                color: white;
+                span{
+                    font-weight: 300;
+                }
+               }
+           }
+        }
+    }
+}
+
+.dropdown-1{
+    position: absolute !important;
+    font-size: 15px !important;
+    background-color: #f4f7f9 !important;
+    color: black !important;
+    text-decoration: none !important;
+}
