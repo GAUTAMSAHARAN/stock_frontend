@@ -1,0 +1,33 @@
+.box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .login-heading{
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 700;
+        font-size: 30px;
+    }
+    .login-desc{
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 300;
+    }
+    .login-card{
+        width: 500px !important;
+        height: fit-content !important;
+        .item{
+            width: 50%;
+        }
+    }
+}
+
+.button-submit{
+    background-color: #1ba94c !important;
+    color: white !important;
+}
+
+.panel{
+    border-bottom: 5px solid #1ba94c !important;
+}

@@ -33,6 +33,7 @@
         }
         .desc-2{
             background-color: white !important;
+            overflow-x: scroll;
         }
         .desc-1{
            width: 100% !important;
@@ -47,6 +48,9 @@
                flex-direction: row;
                align-items: center;
                div{
+                   &:hover{
+                       cursor: pointer;
+                   }
                    background-color: #6a8db0;
                    color: white;
                    display: flex;
@@ -59,6 +63,11 @@
                    border: 1px solid black;
                    margin-right: 20px;
                    font-size: 10px;
+               }
+               div.active{
+                   background-color: #ffffff;
+                   border: 1px solid #f19f02;
+                   color: darkblue;
                }
            }
            .info-box{
@@ -81,3 +90,45 @@
     }
 }
 
+
+@media screen and (max-width: 443px){
+   .bottom-card{
+       .company-data-card{
+          .head{
+              margin-top: 30px;
+          }
+          .desc-1{
+              .options{
+                  position: relative !important;
+                  height: 170px !important;
+                  display: block !important; 
+                  div{
+                      float: left;
+                      margin-right: 30px;
+                      margin-left: 25px;
+                      margin-bottom: 20px;
+                      width: 40px;
+                      height: 40px;
+                  }
+                  clear:  both !important;
+              }
+              .info-box{
+                  margin-top: 30px;
+                  display: block;
+                  clear:  both !important;
+                  div{
+                      float: left;
+                      margin-right: 30px;
+                      margin-left: 25px;
+                  }
+                  .info-date{
+                      margin-right: 40px;
+                  }
+              }
+          }
+          .desc-2{
+              margin-top: 20px !important;
+          }
+       }
+   }  
+}

@@ -4,26 +4,11 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 import axios from 'axios';
+import apiClient from '../config/apiclient';
+import moment from 'moment';
 import '../styles/company.scss';
 
-const panes2 = [
-    {
-        menuItem: 'Chart',
-        render: () => <Tab.Pane className='tab-options' attached={true}>
-            <div className="options">
-                <div>1D</div>
-                <div>1W</div>
-                <div>1M</div>
-                <div>3M</div>
-                <div>6M</div>
-                <div>1Y</div>
-                <div>2Y</div>
-                <div>5Y</div>
-                <div>ALL</div>
-            </div>
-        </Tab.Pane>,
-    },
-]
+
 
 const options = [
     { key: 'Ashokley', text: 'Ashokley Industries', value: 'Ashokey' },
@@ -33,70 +18,222 @@ const options = [
     { key: 'Eichermotors', text: 'Eichermotors Industries', value: 'Eichermotors' }
 ]
 
-const data = [
-    {
-      "name": "Page A",
-      "uv": 4000,
-      "pv": 2400,
-      "amt": 2400
-    },
-    {
-      "name": "Page B",
-      "uv": 3000,
-      "pv": 1398,
-      "amt": 2210
-    },
-    {
-      "name": "Page C",
-      "uv": 2000,
-      "pv": 9800,
-      "amt": 2290
-    },
-    {
-      "name": "Page D",
-      "uv": 2780,
-      "pv": 3908,
-      "amt": 2000
-    },
-    {
-      "name": "Page E",
-      "uv": 1890,
-      "pv": 4800,
-      "amt": 2181
-    },
-    {
-      "name": "Page F",
-      "uv": 2390,
-      "pv": 3800,
-      "amt": 2500
-    },
-    {
-      "name": "Page G",
-      "uv": 3490,
-      "pv": 4300,
-      "amt": 2100
-    }
-  ]
 
 class Company extends Component {
     constructor(props) {
         super(props)
         this.state = {
             company: [],
+            nameL: 'ashokley',
+        }
+        this.formatXAxis = this.formatXAxis.bind(this)
+        this.changeUrl = this.changeUrl.bind(this)
+    }
+
+    componentDidMount() {
+        apiClient.get(`/ashokley/year/`)
+            .then(res => {
+                const stock = res.data;
+                console.log(stock);
+                this.setState({
+                    company: stock,
+                    name: 'ashokley',
+                    active: 'year',
+                });
+            })
+    }
+
+    formatXAxis(tickItem) {
+        return moment(tickItem).format('DD MMM')
+    }
+
+
+    changeCustomUrl(string){
+        switch(string){
+            case 'day':
+                apiClient.get(`/${this.state.name}/day/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'day',
+                    });
+                })
+                break;
+            case 'oneWeek':
+                apiClient.get(`/${this.state.name}/week/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'week',
+                    });
+                })
+                break;
+            case 'oneMonth':
+                apiClient.get(`/${this.state.name}/month/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'month',
+                    });
+                })
+                break;
+            case 'threeMonth':
+                apiClient.get(`/${this.state.name}/threemonth/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'threemonth',
+                    });
+                })
+                break; 
+            case 'sixMonth':
+                apiClient.get(`/${this.state.name}/sixmonth/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'sixmonth',
+                    });
+                })
+                break;
+            case 'oneYear':
+                apiClient.get(`/${this.state.name}/year/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'year',
+                    });
+                })
+                break;
+            case 'fiveYear':
+                apiClient.get(`/${this.state.name}/fiveyear/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'fiveyear',
+                    });
+                })
+                break;
+            case 'all':
+                apiClient.get(`/${this.state.name}/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'all',
+                    });
+                })
+                break;
+            default:
+                apiClient.get(`/${this.state.name}/`)
+                .then(res => {
+                    const stock = res.data;
+                    this.setState({
+                        company: stock,
+                        active: 'all',
+                    });
+                })
         }
     }
 
-    componentDidMount(){
-        axios.get(`http://127.0.0.1:8000/ashokley/year/`)
-        .then(res => {
-            const stock = res.data;
-            console.log(stock);
-            this.setState({
-                company: stock,
-            });
-        })
-    }
+    panes2 = [
+        {
+            menuItem: 'Chart',
+            render: () => <Tab.Pane className='tab-options' attached={true}>
+                <div className="options">
+                    <div className={this.state.active == 'day' ? 'active': ''} onClick={(event) => this.changeCustomUrl('day')} >1D</div>
+                    <div className={this.state.active == 'week' ? 'active': ''} onClick={(event) => this.changeCustomUrl('oneWeek')}>1W</div>
+                    <div className={this.state.active == 'month' ? 'active': ''} onClick={(event) =>this.changeCustomUrl('oneMonth')}>1M</div>
+                    <div className={this.state.active == 'threemonth' ? 'active': ''} onClick={(event) => this.changeCustomUrl('threeMonth')} >3M</div>
+                    <div className={this.state.active == 'sixmonth' ? 'active': ''} onClick={(event) => this.changeCustomUrl('sixMonth')} >6M</div>
+                    <div className={this.state.active == 'year' ? 'active': ''} onClick={(event) => this.changeCustomUrl('oneYear')} >1Y</div>
+                    <div className={this.state.active == 'twoyear' ? 'active': ''} onClick={(event) => this.changeCustomUrl('twoYear')} >2Y</div>
+                    <div className={this.state.active == 'fiveyear' ? 'active': ''} onClick={(event) => this.changeCustomUrl('fiveYear')}>5Y</div>
+                    <div className={this.state.active == 'all' ? 'active': ''} onClick={(event) => this.changeCustomUrl('all')}>ALL</div>
+                </div>
+            </Tab.Pane>,
+        },
+    ]
+    changeUrl = (event, { value }) => {
+        console.log(value)
+        switch (value) {
+            case 'Cipla':
+                apiClient.get(`/cipla/${this.state.active}/`)
+                .then(res => {
+                    const stock = res.data;
+                    console.log(stock);
+                    this.setState({
+                        company: stock,
+                        name: 'cipla',
+                    });
+                })
+                break;
+            case 'Reliance':
+                console.log('hello')
+                apiClient.get(`/reliance/${this.state.active}/`)
+                .then(res => {
+                    const stock = res.data;
+                    console.log(stock);
+                    this.setState({
+                        company: stock,
+                        name: 'reliance',
+                    });
+                })
+                break;
+            case 'Tatasteel':
+                console.log('hello')
+                apiClient.get(`/tatasteel/${this.state.active}/`)
+                .then(res => {
+                    const stock = res.data;
+                    console.log(stock);
+                    this.setState({
+                        company: stock,
+                        name: 'tatasteel',
+                    });
+                })
+                break;
+            case 'Eichermotors':
+                console.log('hello')
+                apiClient.get(`/eichermotors/${this.state.active}/`)
+                .then(res => {
+                    const stock = res.data;
+                    console.log(stock);
+                    this.setState({
+                        company: stock,
+                        name: 'eichermotors',
+                    });
+                })
+                break;
+            case 'Ashokley':
+                    apiClient.get(`/ashokley/${this.state.active}/`)
+                    .then(res => {
+                        const stock = res.data;
+                        console.log(stock);
+                        this.setState({
+                            company: stock,
+                            name: 'askokley',
+                        });
+                    })
+                    break;
+            default:
+                apiClient.get(`/ashokley/${this.state.active}/`)
+                .then(res => {
+                    const stock = res.data;
+                    console.log(stock);
+                    this.setState({
+                        company: stock,
+                        name: 'ashokley',
+                    });
+                })
+        }
 
+    }
     render() {
         return (
             <>
@@ -104,11 +241,11 @@ class Company extends Component {
                     <Card className='company-data-card'>
                         <Card.Content>
                             <Card.Header className='header-1'>
-                                <Dropdown placeholder='Ashokley Industries' className='dropdown-1' selection options={options} /><br></br><br></br>
+                                <Dropdown placeholder='Ashokley Industries' onChange={this.changeUrl} className='dropdown-1' selection options={options} /><br></br><br></br>
                                 <span className='head'>CHARTS</span>
                             </Card.Header>
                             <Card.Description className='desc-1'>
-                                <Tab menu={{ secondary: true, pointing: true }} panes={panes2} />
+                                <Tab menu={{ secondary: true, pointing: true }} panes={this.panes2} />
                                 <div className="info-box">
                                     <div className="info-date">27 Jan 2020</div>
                                     <div><span>Open:</span> 1500.67</div>
@@ -119,8 +256,8 @@ class Company extends Component {
                                 </div>
                             </Card.Description>
                             <Card.Description className='desc-2'>
-                                <AreaChart width={1100} height={250} data={this.state.company}
-                                    margin={{ top: 30, right: 30, left: 50, bottom: 10 }}>
+                                <AreaChart width={1500} height={250} data={this.state.company}
+                                    margin={{ top: 30, right: 30, left: 0, bottom: 10 }}>
                                     <defs>
                                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
@@ -131,11 +268,14 @@ class Company extends Component {
                                             <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                                         </linearGradient>
                                     </defs>
-                                    <XAxis dataKey="Date" />
+                                    <XAxis
+                                        dataKey="Date"
+                                        tickFormatter={this.formatXAxis}
+                                    />
                                     <YAxis />
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <Tooltip />
-                                    <Area type="monotone" dataKey="Adj_close" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+                                    <Area type="monotone" dataKey="Close" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
                                 </AreaChart>
                             </Card.Description>
                         </Card.Content>
