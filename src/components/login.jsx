@@ -54,7 +54,11 @@ class LogIn extends Component {
               console.log(res.data.token);
               sessionStorage.setItem("token", res.data.token);
               sessionStorage.setItem('IsLoggedIn', true);
-              this.props.history.push("/app"); }
+              this.props.history.push("/app"); 
+            }else{
+                alert('your credentials are not correct');
+            }
+
         })
         .catch(function (error) {
             throw error;
@@ -71,6 +75,8 @@ class LogIn extends Component {
                 sessionStorage.setItem("token", res.data.token);
                 sessionStorage.setItem('IsLoggedIn', true);
                 return <Redirect to={"/app"} />
+            }else{
+                alert('email is already taken');
             }
         })
         .catch(function (error) {
@@ -85,19 +91,19 @@ class LogIn extends Component {
                 <Form>
                     <Form.Field>
                         <label>Name</label>
-                        <input placeholder='Name' name='first_name' onChange={(e)=> this.onChange2(e)} />
+                        <input placeholder='Name' value={this.state.signup.name} name='first_name' onChange={(e)=> this.onChange2(e)} />
                     </Form.Field>
                     <Form.Field>
                         <label>Username</label>
-                        <input placeholder='username' name='username' onChange={(e) => this.onChange2(e)} />
+                        <input placeholder='username' value={this.state.signup.username} name='username' onChange={(e) => this.onChange2(e)} />
                     </Form.Field>
                     <Form.Field>
                         <label>Email</label>
-                        <input placeholder='email' name='email' onChange={(e) => this.onChange2(e)} />
+                        <input placeholder='email' value={this.state.signup.email}  name='email' onChange={(e) => this.onChange2(e)} />
                     </Form.Field>
                     <Form.Field>
                         <label>Password</label>
-                        <input placeholder='password' name='password' onChange={(e) => this.onChange2(e)} />
+                        <input placeholder='password' value={this.state.signup.password}  name='password' onChange={(e) => this.onChange2(e)} />
                     </Form.Field>
                     <Button className='button-submit' onClick={() => this.signUpSubmit()} type='submit'>Register</Button>
                 </Form>
@@ -107,11 +113,11 @@ class LogIn extends Component {
                 <Form>
                     <Form.Field>
                         <label>Email</label>
-                        <input placeholder='Email' name='email' onChange={(e) => this.onChange(e)} />
+                        <input placeholder='Email' name='email' value={this.state.login.email} onChange={(e) => this.onChange(e)} />
                     </Form.Field>
                     <Form.Field>
                         <label>Password</label>
-                        <input placeholder='password' name='password' onChange={(e) => this.onChange(e)} />
+                        <input placeholder='password' name='password' value={this.state.login.password} onChange={(e) => this.onChange(e)} />
                     </Form.Field>
                     <Button className='button-submit' onClick={() => this.logInSubmit()} type='submit'>Log In</Button>
                 </Form>

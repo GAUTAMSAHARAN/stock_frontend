@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import apiClient from '../config/apiclient';
 import { Card, Dropdown, Divider, Tab, List } from 'semantic-ui-react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -28,7 +28,7 @@ class StockIndex extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/nifty/niftydata/`)
+        apiClient.get(`/nifty/niftydata/`)
         .then(res => {
             const stock = res.data;
             this.setState({
@@ -106,7 +106,7 @@ class StockIndex extends Component {
         switch(value){
             case 'NSE':
                 console.log('hello')
-                axios.get(`http://127.0.0.1:8000/nifty/niftydata/`)
+                apiClient.get(`/nifty/niftydata/`)
                     .then(res => {
                         const stock = res.data;
                         this.setState({
@@ -120,7 +120,7 @@ class StockIndex extends Component {
                 break;
             case 'BSE':
                 console.log('hello')
-                axios.get(`http://127.0.0.1:8000/sensex/data/`)
+                apiClient.get(`/sensex/data/`)
                 .then(res => {
                     const stock = res.data;
                     this.setState({
@@ -133,7 +133,7 @@ class StockIndex extends Component {
                 })
                 break;
             default:
-                axios.get(`http://127.0.0.1:8000/nifty/niftydata/`)
+                apiClient.get(`/nifty/niftydata/`)
                 .then(res => {
                     const stock = res.data;
                     this.setState({
@@ -187,7 +187,7 @@ class StockIndex extends Component {
                                         <div className="values"><span>{this.round(this.state.current.Low,2).toLocaleString('en')}</span><span>{this.round(this.state.current.High,2).toLocaleString('en')}</span></div>
                                         <div className="bar">
                                             <div className='text'>L</div>
-                                            <div className='line'><div className="ball" style={{marginLeft: this.position(this.state.current.High-this.state.current.Low, this.state.current.Adj_close-this.state.current.Low) + 'px'}} ></div></div>
+                                            <div className='line'><div className="ball" style={{marginLeft: this.position(this.state.current.High-this.state.current.Low, this.state.current.Adj_close-this.state.current.Low) + '%'}} ></div></div>
                                             <div className='text'>H</div>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@ class StockIndex extends Component {
                                         <div className="values"><span>{this.round(this.state.year.Low,2).toLocaleString('en')}</span><span>{this.round(this.state.year.High,2).toLocaleString('en')}</span></div>
                                         <div className="bar">
                                             <div className='text'>L</div>
-                                            <div className='line'><div className="ball" style={{marginLeft: this.position(this.state.year.High-this.state.year.Low, this.state.current.Adj_close-this.state.year.Low) + 'px'}} ></div></div>
+                                            <div className='line'><div className="ball" style={{marginLeft: this.position(this.state.year.High-this.state.year.Low, this.state.current.Adj_close-this.state.year.Low) + '%'}} ></div></div>
                                             <div className='text' >H</div>
                                         </div>
                                     </div>
