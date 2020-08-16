@@ -11,7 +11,14 @@
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300 !important;
         .header-1{
-            span{
+            .dropdown-1{
+                position: absolute !important;
+                font-size: 15px !important;
+                background-color: #f4f7f9 !important;
+                color: black !important;
+                text-decoration: none !important;
+            }
+            .head{
                 width: 100%;
                 display: flex;
                 justify-content: center;
@@ -23,6 +30,9 @@
                 text-decoration-color: #f19f02;
                 text-decoration-thickness: 5px;
             }
+        }
+        .desc-2{
+            background-color: white !important;
         }
         .desc-1{
            width: 100% !important;
@@ -71,10 +81,3 @@
     }
 }
 
-.dropdown-1{
-    position: absolute !important;
-    font-size: 15px !important;
-    background-color: #f4f7f9 !important;
-    color: black !important;
-    text-decoration: none !important;
-}

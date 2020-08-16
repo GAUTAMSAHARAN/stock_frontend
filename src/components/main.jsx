@@ -5,7 +5,6 @@ import Container from '@material-ui/core/Container';
 import '../styles/main.scss';
 import StockIndex from './stockindex';
 import Company from './company';
-import Short from './popup';
 
 const Main = () => {
     return (
@@ -13,7 +12,6 @@ const Main = () => {
             <CssBaseline />
             <Container maxWidth="lg">
                 <Typography component="div" style={{ backgroundColor: 'white', height: 'fit-content' }}>
-                    <Short />
                     <StockIndex />
                     <Company />
                 </Typography>
